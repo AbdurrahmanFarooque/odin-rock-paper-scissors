@@ -1,3 +1,7 @@
+// 0 = rock
+// 1 = paper
+// 2 = scissors
+
 async function playGame() {
     let computerScore = 0;
     let humanScore = 0;
@@ -6,7 +10,7 @@ async function playGame() {
         const humanChoice = getHumanChoice();
         const computerChoice = getComputerChoice();
 
-        console.log(`Round ${i + 1}`)
+        console.log(`Round ${i + 1}`);
         
         console.log(`Your Score: ${humanScore} :: Computer Score: ${computerScore}`);
 
@@ -29,10 +33,12 @@ async function playGame() {
     return;
     
     function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            return `Tied between ${humanChoice} and ${computerChoice}`;
+        }
+        
         if (humanChoice === "rock") {
             switch (computerChoice) {
-                case "rock":
-                    return "Tied between Rock and Rock";
                 case "paper":
                     computerScore++;
                     return "You lose! Paper beats Rock";
@@ -47,8 +53,6 @@ async function playGame() {
                 case "rock":
                     humanScore++;
                     return "You win! Paper beats Rock";
-                case "paper":
-                    return "Tied between Paper and Paper";
                 case "scissors":
                     computerScore++;
                     return "You lose! Scissors beat Paper";
@@ -63,8 +67,6 @@ async function playGame() {
                 case "paper":
                     humanScore++;
                     return "You win! Scissors beat Paper";
-                case "scissors":
-                    return "Tied between Scissors and Scissors";
             }
         }
     }
